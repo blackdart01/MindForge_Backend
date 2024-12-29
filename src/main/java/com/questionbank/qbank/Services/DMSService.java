@@ -14,4 +14,6 @@ public interface DMSService {
     public DocumentModel getDocumentById(String id);
     public List<DocumentModel> getAllDocuments();
     public DocumentModel saveDocuments(JsonNode jsonNode);
+    public DocumentModel updateTestStatus(String id, String status);
+    public DocumentModel updateTestProgress(String id, String progress);
 }

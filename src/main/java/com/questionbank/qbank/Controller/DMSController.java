@@ -42,6 +42,22 @@ public class DMSController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @PostMapping("/updateTestStatus/{id}")
+    public ResponseEntity<DocumentModel> updateTestStatus(@PathVariable String id, @RequestParam(name = "status") String status){
+        DocumentModel documentModelNew = dmsService.updateTestStatus(id, status);
+        if(documentModelNew!=null)
+            return new ResponseEntity<>((documentModelNew), HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("/updateTestProgress/{id}")
+    public ResponseEntity<DocumentModel> updateTestProgress(@PathVariable String id, @RequestParam(name = "progress") String progress){
+        DocumentModel documentModelNew = dmsService.updateTestProgress(id, progress);
+        if(documentModelNew!=null)
+            return new ResponseEntity<>((documentModelNew), HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
     public <T> JsonNode convertToObject(T response){
         JsonNode r = null;
         if(response!=null){

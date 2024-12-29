@@ -24,6 +24,22 @@ public class DMSServiceImpl implements DMSService {
     public DocumentModel getDocumentById(String id) {
         return dmsRepository.findById(id).orElse(null);
     }
+    public DocumentModel updateTestStatus(String id, String status) {
+        DocumentModel documentModel = dmsRepository.findById(id).orElse(null);
+        if(ObjectUtils.isNotEmpty(documentModel)){
+            documentModel.setTestStatus(status);
+            return mongoTemplate.save(documentModel, "dms-col");
+        }
+        return null;
+    }
+    public DocumentModel updateTestProgress(String id, String progress) {
+        DocumentModel documentModel = dmsRepository.findById(id).orElse(null);
+        if(ObjectUtils.isNotEmpty(documentModel)){
+            documentModel.setTestProgressDuration(Integer.valueOf(progress));
+            return mongoTemplate.save(documentModel, "dms-col");
+        }
+        return null;
+    }
     public List<DocumentModel> getAllDocuments() {
         Query query = new Query();
         query.addCriteria(Criteria.where("collection").is("dms-col"));
