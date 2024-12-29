@@ -25,7 +25,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/short")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {"http://localhost:5173", "https://mindforge-lms.netlify.app/"})
 public class URLShortnerController {
 
     private static final Map<String, String> urlMap = new HashMap<>();
